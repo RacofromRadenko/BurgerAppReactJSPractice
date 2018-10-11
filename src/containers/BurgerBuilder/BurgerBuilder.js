@@ -6,6 +6,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import errorHandlerWrapper from '../../hoc/errorHandlerWrapper/errorHandlerWrapper';
+import { Route } from 'react-router-dom';
 import axios from '../../axios-orders';
 
 const INGREDIENT_PRICES = {
@@ -54,7 +55,7 @@ class BurgerBuilder extends Component {
 		this.updatePurchaseState(updatedIngredients);
 	};
 
-	removeInredientHandler = (type) => {
+	removeIngredientHandler = (type) => {
 		const oldCount = this.state.ingredients[type];
 
 		if (oldCount <= 0) {
@@ -149,7 +150,7 @@ class BurgerBuilder extends Component {
 				<Aux>
 					<Burger ingredients={this.state.ingredients} />
 					<BuildControls
-						ingredientRemove={this.removeInredientHandler}
+						ingredientRemove={this.removeIngredientHandler}
 						ingredientAdded={this.addInredientHandler}
 						disabled={disabledInfo}
 						price={this.state.totalPrice}
@@ -180,7 +181,7 @@ class BurgerBuilder extends Component {
 				<Modal show={this.state.purchasing} dontShowModal={this.closeModalHandler}>
 					{orderSummary}
 				</Modal>
-				{burger}
+				<Route path="/checkout" component={burger} />
 			</Aux>
 		);
 	}

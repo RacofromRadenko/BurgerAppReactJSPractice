@@ -1,6 +1,7 @@
 import React from 'react';
 import Aux from '../../../hoc/AuxHolder/AuxHolder';
 import Button from '../../UI/Button/Button';
+import { NavLink } from 'react-router-dom';
 
 const orderSummary = (props) => {
 	const ingredientSummary = Object.keys(props.ingredients).map((igKeys) => {
@@ -22,9 +23,11 @@ const orderSummary = (props) => {
 			<Button btnType="Danger" clicked={props.cancelPurchaseHandler}>
 				CANCEL
 			</Button>
-			<Button btnType="Success" clicked={props.continiuePurchaseHandler}>
-				CONTINUE
-			</Button>
+			<NavLink to="/checkout">
+				<Button btnType="Success" clicked={props.continiuePurchaseHandler}>
+					CONTINUE
+				</Button>
+			</NavLink>
 		</Aux>
 	);
 };
